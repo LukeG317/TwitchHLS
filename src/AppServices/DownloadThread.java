@@ -15,12 +15,11 @@ public class DownloadThread extends Thread {
 
     private String channel;
     private Lock lock;
-    private ArrayList<Streamer> str;
+    private ArrayList<Streamer> str = new ArrayList<>();
 
-    public DownloadThread(String Url, Lock lock, ArrayList<Streamer> str) {
+    public DownloadThread(String Url, Lock lock) {
         this.channel = "https://api.twitch.tv/kraken/streams/" + Url;
         this.lock = lock;
-        this.str = str;
     }
 
     @Override

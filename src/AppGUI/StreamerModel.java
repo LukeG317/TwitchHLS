@@ -5,7 +5,8 @@
  */
 package AppGUI;
 
-import AppDAOs.StreamReader;
+import AppDAOs.FileAccess;
+import AppDAOs.FileAccess.FileMode;
 import AppServices.Streamer;
 import java.util.*;
 import javax.swing.*;
@@ -21,8 +22,8 @@ public class StreamerModel extends DefaultComboBoxModel {
     private String selectedStreamTypString = null;
 
     public StreamerModel() {
-        StreamReader reader = new StreamReader();
-        this.sortStreamer(reader.getStreamer());
+        FileAccess access = new FileAccess("TwitchHLS.config");
+        this.sortStreamer(access.readStreamer());
     }
 
     @Override

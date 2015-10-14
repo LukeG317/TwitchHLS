@@ -5,7 +5,8 @@
  */
 package AppServices;
 
-import AppDAOs.StreamWriter;
+import AppDAOs.FileAccess;
+import AppDAOs.FileAccess.FileMode;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -83,21 +84,8 @@ public class HTMLCreator {
                 System.out.println("Failed to create directory!");
             }
         }
-        try {
-            File file = new File(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "TwitchHLS" + File.separator + "TwitchHLS.html");
-            fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(this.html);
-            bw.close();
-        } catch (IOException ex) {
-            Logger.getLogger(StreamWriter.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                fw.close();
-            } catch (IOException ex) {
-                Logger.getLogger(StreamWriter.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        FileAccess access = new FileAccess(FileMode.UNAPPEND,"TwitchHLS.html");
+        access.write(this.html);
     }
     
     public String getHTMLPath(){

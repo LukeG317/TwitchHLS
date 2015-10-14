@@ -5,9 +5,9 @@
  */
 package AppServices;
 
-import AppDAOs.ReadWriteUsername;
-import AppDAOs.StreamReader;
-import AppDAOs.StreamWriter;
+
+import AppDAOs.FileAccess;
+import AppDAOs.FileAccess.FileMode;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.io.*;
@@ -50,10 +50,10 @@ public class Following {
 
     private void writeToStreamerList() {
         ArrayList<String> following = this.getFollowingList();
-        StreamReader reader = new StreamReader();
+        FileAccess access = new FileAccess(FileMode.APPEND,"TwitchHLS.config");
         for (String follow : following) {
-            if (this.contains(reader.getStreamer(), follow) == false) {
-                StreamWriter wirter = new StreamWriter(follow);
+            if (this.contains(access.readStreamer(), follow) == false) {
+                access.write(follow);
             }
         }
 
@@ -61,8 +61,8 @@ public class Following {
 
     private String getUsername() {
         String eingabe = null;
-        ReadWriteUsername user = new ReadWriteUsername();
-        eingabe = user.read();
+        FileAccess user = new FileAccess(FileMode.UNAPPEND,"User.txt");
+        eingabe = user.readString();
         if (eingabe == null || eingabe.contains(" ") || eingabe.isEmpty()) {
             do {
                 eingabe = JOptionPane.showInputDialog(null, "Enter your Twitch Name", "Twitch Username", JOptionPane.PLAIN_MESSAGE);

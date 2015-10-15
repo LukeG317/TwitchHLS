@@ -5,6 +5,7 @@
  */
 package AppGUI;
 
+import AppServices.Following;
 import javax.swing.JFrame;
 
 

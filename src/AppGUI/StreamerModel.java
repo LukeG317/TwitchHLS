@@ -7,6 +7,7 @@ package AppGUI;
 
 import AppDAOs.FileAccess;
 import AppDAOs.FileAccess.FileMode;
+import AppServices.Following;
 import AppServices.Streamer;
 import java.util.*;
 import javax.swing.*;
@@ -20,8 +21,10 @@ public class StreamerModel extends DefaultComboBoxModel {
     private ArrayList<Streamer> streamer = new ArrayList<>();
     private Streamer selectedStreamTyp = null;
     private String selectedStreamTypString = null;
+    private Following follow;
 
     public StreamerModel() {
+        this.follow = follow;
         FileAccess access = new FileAccess("TwitchHLS.config");
         this.sortStreamer(access.readStreamer());
     }

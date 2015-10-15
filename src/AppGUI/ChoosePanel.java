@@ -6,6 +6,7 @@
 package AppGUI;
 
 import AppActions.*;
+import AppServices.Following;
 import AppServices.StreamerListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -34,7 +35,7 @@ public class ChoosePanel extends JPanel {
     private final JCheckBox chatBox = new JCheckBox();
     private final JLabel autoQualityLabel = new JLabel("AQ:");
     private final JCheckBox autoQualityBox = new JCheckBox();
-
+    
     public ChoosePanel() {
         this.setLayout(new BorderLayout());
         Border padding = BorderFactory.createEmptyBorder(10, 10, 10, 10);

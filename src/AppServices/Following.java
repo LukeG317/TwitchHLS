@@ -21,6 +21,7 @@ import com.eclipsesource.json.*;
 public class Following {
 
     private String user;
+    private ArrayList<Streamer> streamer;
 
     public Following() {
         user = this.getUsername();
@@ -51,12 +52,18 @@ public class Following {
     private void writeToStreamerList() {
         ArrayList<String> following = this.getFollowingList();
         FileAccess access = new FileAccess(FileMode.APPEND,"TwitchHLS.config");
+        ArrayList<Streamer> streamer = access.readStreamer();
+        this.streamer = streamer;
         for (String follow : following) {
-            if (this.contains(access.readStreamer(), follow) == false) {
+            if (this.contains(streamer, follow) == false) {
                 access.write(follow);
             }
         }
 
+    }
+
+    public ArrayList<Streamer> getStreamer() {
+        return streamer;
     }
 
     private String getUsername() {

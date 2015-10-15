@@ -36,6 +36,7 @@ public class FileAccess {
         dir = new File(this.dirPath);
         this.file = new File(this.dirPath + File.separator + fileName);
         this.createDirectory();
+        this.createFile();
         this.mode = mode;
         this.fileName = fileName;
 
@@ -77,6 +78,7 @@ public class FileAccess {
                 }
             }
             DownloadStreamer streamer = new DownloadStreamer(streamerString);
+            System.out.println("test");
             return streamer.getStreamer();
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();

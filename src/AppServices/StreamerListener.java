@@ -5,8 +5,9 @@
  */
 package AppServices;
 
-import AppDAOs.StreamReader;
-import AppDAOs.StreamWriter;
+
+import AppDAOs.FileAccess;
+import AppDAOs.FileAccess.FileMode;
 import AppGUI.AutoCompleteComboBox;
 import AppGUI.ChoosePanel;
 import AppGUI.StreamerModel;
@@ -21,10 +22,12 @@ public class StreamerListener extends KeyAdapter {
 
     private ChoosePanel pan;
     private AutoCompleteComboBox box;
+    private Following follow;
     
     public StreamerListener(ChoosePanel panel,AutoCompleteComboBox box) {
-        pan = panel;
+        this.pan = panel;
         this.box= box;
+        this.follow = follow;
     }
 
     
@@ -33,18 +36,18 @@ public class StreamerListener extends KeyAdapter {
     public void keyReleased(KeyEvent e) {
         boolean avaliable = false;
         if (e.getExtendedKeyCode() == KeyEvent.VK_ENTER) {
-            StreamReader reader = new StreamReader();
+            FileAccess access = new FileAccess(FileMode.APPEND,"TwitchHLS.config");
             String streamer = (String) box.getSelectedItem().toString();
-            for (Streamer str : reader.getStreamer()) {
+            for (Streamer str : access.readStreamer()) {
                 if (str.getChannel().compareToIgnoreCase(streamer) == 0) {
                     avaliable = true;
                 }
             }
             if (avaliable == false && streamer.contains(" ") == false && streamer.isEmpty() == false) {
-                StreamWriter writer = new StreamWriter(streamer);
+                access.write(streamer);
             }
-            box.setModel(new StreamerModel());
-            box.repaint();
+            //box.setModel(new StreamerModel());
+            //box.repaint();
             pan.getStartButton().doClick();
         }
     }

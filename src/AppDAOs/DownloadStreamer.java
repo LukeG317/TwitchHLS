@@ -17,13 +17,13 @@ import java.util.logging.Logger;
  * @author lukasgreiner
  */
 public class DownloadStreamer {
-    private DownloadThread thread;
+    private DownloadThread dt = null;
+    private ArrayList<Streamer> strem = new ArrayList<>();
 
     public DownloadStreamer(ArrayList<String> streamerString) {
         Lock lock = new Lock();
-        DownloadThread dt = null;
         for (String url : streamerString) {
-            dt = new DownloadThread(url, lock);
+            dt = new DownloadThread(url, lock,strem);
             dt.start();
         }
         while (lock.getRunningThreadsNumber() > 0) {
@@ -36,15 +36,12 @@ public class DownloadStreamer {
                 }
                 continue;
             }
+            
         }
     }
 
     public ArrayList<Streamer> getStreamer() {
-        return thread.getStreamer();
+        return strem;
     }
-    
-    
-    
-    
 
 }

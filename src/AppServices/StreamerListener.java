@@ -46,8 +46,6 @@ public class StreamerListener extends KeyAdapter {
             if (avaliable == false && streamer.contains(" ") == false && streamer.isEmpty() == false) {
                 access.write(streamer);
             }
-            //box.setModel(new StreamerModel());
-            //box.repaint();
             pan.getStartButton().doClick();
         }
     }

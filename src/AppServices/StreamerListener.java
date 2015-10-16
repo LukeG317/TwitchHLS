@@ -47,6 +47,7 @@ public class StreamerListener extends KeyAdapter {
                 access.write(streamer);
             }
             pan.getStartButton().doClick();
+            
         }
     }
 

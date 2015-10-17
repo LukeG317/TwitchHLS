@@ -10,7 +10,6 @@ import AppDAOs.FileAccess;
 import AppDAOs.FileAccess.FileMode;
 import AppGUI.AutoCompleteComboBox;
 import AppGUI.ChoosePanel;
-import AppGUI.StreamerModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 

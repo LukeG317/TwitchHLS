@@ -15,8 +15,8 @@ import javax.swing.JFrame;
  */
 public class MainFrame extends JFrame {
 
-    public MainFrame() {
-        ChoosePanel contPan = new ChoosePanel();
+    public MainFrame(Following follow) {
+        ChoosePanel contPan = new ChoosePanel(follow);
         this.setTitle("TwitchHLS");
         this.setContentPane(contPan);
         this.getRootPane().setDefaultButton(contPan.getStartButton());

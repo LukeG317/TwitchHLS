@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class FileAccess {
 
-    private String dirPath = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "TwitchHLS";
+    private final String dirPath;
     private File dir, file;
     private String fileName;
     private FileMode mode;
@@ -33,6 +33,7 @@ public class FileAccess {
     }
 
     public FileAccess(FileMode mode, String fileName) {
+        this.dirPath = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "TwitchHLS";
         dir = new File(this.dirPath);
         this.file = new File(this.dirPath + File.separator + fileName);
         this.createDirectory();

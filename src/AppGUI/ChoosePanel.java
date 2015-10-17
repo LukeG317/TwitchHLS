@@ -36,7 +36,10 @@ public class ChoosePanel extends JPanel {
     private final JLabel autoQualityLabel = new JLabel("AQ:");
     private final JCheckBox autoQualityBox = new JCheckBox();
     
-    public ChoosePanel() {
+    private Following follow;
+    
+    public ChoosePanel(Following follow) {
+        this.follow = follow;
         this.setLayout(new BorderLayout());
         Border padding = BorderFactory.createEmptyBorder(10, 10, 10, 10);
         this.setBorder(padding);
@@ -77,7 +80,7 @@ public class ChoosePanel extends JPanel {
         help.add(qualityLabel);
 
         //Input Box
-        inputBox.setModel(new StreamerModel());
+        inputBox.setModel(new StreamerModel(this.follow));
         inputBox.setEditable(true);
         AutoCompleteComboBox input = new AutoCompleteComboBox(inputBox);
         ImageIcon greenButton = new ImageIcon(getClass().getResource("/Resources/green-button.png"));

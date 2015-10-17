@@ -20,7 +20,7 @@ import com.eclipsesource.json.*;
  */
 public class Following {
 
-    private String user;
+    private final String user;
     private ArrayList<Streamer> streamer;
 
     public Following() {

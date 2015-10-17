@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class DownloadThread extends Thread {
 
-    private String channel;
-    private Lock lock;
-    private ArrayList<Streamer> str;
+    private final String channel;
+    private final Lock lock;
+    private final ArrayList<Streamer> str;
 
     public DownloadThread(String Url, Lock lock,ArrayList<Streamer> str) {
         this.channel = "https://api.twitch.tv/kraken/streams/" + Url;

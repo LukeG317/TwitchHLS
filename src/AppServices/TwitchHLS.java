@@ -18,11 +18,11 @@ public class TwitchHLS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Following ls = new Following();
+        Following follow = new Following();
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MainFrame();
+                new MainFrame(follow);
             }
         });
     }

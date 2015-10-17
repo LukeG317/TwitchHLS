@@ -7,12 +7,8 @@ package AppServices;
 
 import AppDAOs.FileAccess;
 import AppDAOs.FileAccess.FileMode;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,12 +19,16 @@ public class HTMLCreator {
     private String channel;
     private String streamURL;
     private String html;
+    private int width;
+    private int height;
     private boolean auto;
 
     public HTMLCreator(String channel, String streamURL) {
         this.channel = channel;
         this.streamURL = streamURL;
         this.auto = false;
+        this.width = 300;
+        this.height = 300;
         this.createHTMLString();
         this.createHTMLFile();
     }
@@ -39,8 +39,12 @@ public class HTMLCreator {
         if(auto == true){
             this.streamURL = "http://www.twitch.tv/"+this.channel+"/hls";
         }
-        this.createHTMLString();
-        this.createHTMLFile();
+        else{
+            this.width = 300;
+            this.height = 300;
+            this.createHTMLString();
+            this.createHTMLFile();
+        }
     }
 
     private void createHTMLString() {
@@ -57,8 +61,6 @@ public class HTMLCreator {
                 + "            id=\"chat_embed\" \n"
                 + "            src=\""+this.streamURL+"\" \n"
                 + "            style=\"border-style: none;width: 78%; min-height: 98vh;\"\n"
-                + "            height=\"100%\" \n"
-                + "            width=\"75%\"\n"
                 + "            align=\"left\">\n"
                 + "        </iframe>\n"
                 + "        <iframe frameborder=\"0\" \n"

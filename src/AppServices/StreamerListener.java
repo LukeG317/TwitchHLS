@@ -22,12 +22,10 @@ public class StreamerListener extends KeyAdapter {
 
     private ChoosePanel pan;
     private AutoCompleteComboBox box;
-    private Following follow;
     
     public StreamerListener(ChoosePanel panel,AutoCompleteComboBox box) {
         this.pan = panel;
         this.box= box;
-        this.follow = follow;
     }
 
     

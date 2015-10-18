@@ -35,7 +35,7 @@ public class Streamer implements Comparable {
             inputLine = br.readLine();
             br.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         this.channel = channel;
     }

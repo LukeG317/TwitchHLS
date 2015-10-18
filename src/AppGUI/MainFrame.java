@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
         this.getRootPane().setDefaultButton(contPan.getStartButton());
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setSize(310, 200);
+        this.setSize(330, 200);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }

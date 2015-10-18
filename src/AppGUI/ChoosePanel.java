@@ -23,21 +23,23 @@ public class ChoosePanel extends JPanel {
     private final String[] quality = {"Source", "High", "Medium", "Low", "Mobile", "Audio Only"};
     private final JLabel inputLabel = new JLabel("Streamer:");
     private final JLabel qualityLabel = new JLabel("Quality:");
-    private final JComboBox inputBox = new JComboBox();
+    private AutoCompleteComboBox inputBox = new AutoCompleteComboBox();
     private final JComboBox qualityBox = new JComboBox(quality);
 
     private final Action startAction = new startAction(this);
     private final JButton startButton = new JButton(startAction);
     private final Action closeAction = new closeAction();
     private final JButton closeButton = new JButton(closeAction);
+    private final Action refreshAction = new refreshAction(this);
+    private final JButton refreshButton = new JButton(refreshAction);
 
-    private final JLabel chatLabel = new JLabel("Chat:");
+    private final JLabel chatLabel = new JLabel(" Chat:");
     private final JCheckBox chatBox = new JCheckBox();
-    private final JLabel autoQualityLabel = new JLabel("AQ:");
+    private final JLabel autoQualityLabel = new JLabel(" AQ:");
     private final JCheckBox autoQualityBox = new JCheckBox();
-    
+
     private Following follow;
-    
+
     public ChoosePanel(Following follow) {
         this.follow = follow;
         this.setLayout(new BorderLayout());
@@ -81,27 +83,32 @@ public class ChoosePanel extends JPanel {
 
         //Input Box
         inputBox.setModel(new StreamerModel(this.follow));
-        inputBox.setEditable(true);
-        AutoCompleteComboBox input = new AutoCompleteComboBox(inputBox);
         ImageIcon greenButton = new ImageIcon(getClass().getResource("/Resources/green-button.png"));
         ImageIcon redButton = new ImageIcon(getClass().getResource("/Resources/red-button.png"));
-        input.setRenderer(new StreamerRenderer(greenButton,redButton));
-        input.getEditor().getEditorComponent().addKeyListener(new StreamerListener(this,input));
-        help.add(input);
+        inputBox.setRenderer(new StreamerRenderer(greenButton, redButton));
+        inputBox.getEditor().getEditorComponent().addKeyListener(new StreamerListener(this, inputBox));
+        help.add(inputBox);
 
         gbConstr = this.makegbc(1, 0, 2, 1);
         gbConstr.anchor = GridBagConstraints.WEST;
         gbConstr.fill = GridBagConstraints.HORIZONTAL;
-        input.setToolTipText("Select the streamer you would like to watch");
-                
-        layout.setConstraints(input, gbConstr);
+        inputBox.setToolTipText("Select the streamer you would like to watch");
+
+        layout.setConstraints(inputBox, gbConstr);
+
+        //Refresh Button
+        refreshButton.setIcon(new ImageIcon(getClass().getResource("/Resources/refresh-button.png")));
+        refreshButton.setToolTipText("Refreshes the list of Streamer");
+        gbConstr = this.makegbc(3, 0, 0, 1);
+        layout.setConstraints(refreshButton, gbConstr);
+        help.add(refreshButton);
 
         //Quality Box
         qualityBox.setEditable(false);
         qualityBox.setToolTipText("Select the quality of the stream");
         help.add(qualityBox);
         gbConstr = this.makegbc(1, 1, 2, 1);
-        gbConstr.anchor = GridBagConstraints.WEST;
+        gbConstr.anchor = GridBagConstraints.CENTER;
         gbConstr.fill = GridBagConstraints.HORIZONTAL;
 
         layout.setConstraints(qualityBox, gbConstr);
@@ -110,7 +117,7 @@ public class ChoosePanel extends JPanel {
         JPanel buttons = this.createButtonPanel();
         help.add(buttons);
         gbConstr = this.makegbc(1, 3, 2, 1);
-        gbConstr.anchor = GridBagConstraints.WEST;
+        gbConstr.anchor = GridBagConstraints.CENTER;
         gbConstr.fill = GridBagConstraints.HORIZONTAL;
 
         layout.setConstraints(buttons, gbConstr);
@@ -184,8 +191,12 @@ public class ChoosePanel extends JPanel {
         return gbc;
     }
 
-    public JComboBox getInputBox() {
+    public AutoCompleteComboBox getInputBox() {
         return inputBox;
+    }
+
+    public void setInputBox(AutoCompleteComboBox box) {
+        this.inputBox = box;
     }
 
     public JComboBox getQualityBox() {

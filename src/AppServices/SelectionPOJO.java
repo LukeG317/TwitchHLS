@@ -56,6 +56,9 @@ public class SelectionPOJO {
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String inputLine = br.readLine();
             br.close();
+            if(inputLine == null){
+                return false;
+            }
             JsonObject jsonObj = JsonObject.readFrom(inputLine);
             return (jsonObj.get("stream").isNull()) ? false : true;
         } catch (IOException e) {

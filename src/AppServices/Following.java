@@ -72,7 +72,7 @@ public class Following {
         eingabe = user.readString();
         if (eingabe == null || eingabe.contains(" ") || eingabe.isEmpty()) {
             do {
-                eingabe = JOptionPane.showInputDialog(null, "Enter your Twitch Name", "Twitch Username", JOptionPane.PLAIN_MESSAGE);
+                eingabe = JOptionPane.showInputDialog(null, "Enter your Twitch Name:", "Twitch Username", JOptionPane.PLAIN_MESSAGE);
                 if (eingabe.isEmpty() == false && eingabe != null && eingabe.contains(" ") == false) {
                     user.write(eingabe);
                 }

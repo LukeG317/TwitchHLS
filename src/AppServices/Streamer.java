@@ -15,8 +15,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Objects;
-
 /**
  *
  * @author lukasgreiner
@@ -53,9 +51,13 @@ public class Streamer implements Comparable {
     }
 
     public boolean isStreamLive() {
-        JsonObject jsonObj = JsonObject.readFrom(inputLine);
-        this.status = (jsonObj.get("stream").isNull()) ? false : true;
-        return this.status;
+        if (inputLine == null) {
+            return false;
+        } else {
+            JsonObject jsonObj = JsonObject.readFrom(inputLine);
+            this.status = (jsonObj.get("stream").isNull()) ? false : true;
+            return this.status;
+        }
     }
 
     @Override
@@ -68,16 +70,20 @@ public class Streamer implements Comparable {
     }
 
     public String getGame() {
-        JsonObject jsonObj = JsonObject.readFrom(inputLine);
-        if (this.isStreamLive() == false) {
+        if (inputLine == null) {
             return "";
         } else {
-            if (jsonObj.get("stream").isObject()) {
-                JsonObject stream = (JsonObject) jsonObj.get("stream");
-                return stream.get("game").toString();
+            JsonObject jsonObj = JsonObject.readFrom(inputLine);
+            if (this.isStreamLive() == false) {
+                return "";
+            } else {
+                if (jsonObj.get("stream").isObject()) {
+                    JsonObject stream = (JsonObject) jsonObj.get("stream");
+                    return stream.get("game").toString();
+                }
             }
+            return "";
         }
-        return "";
     }
 
     @Override
@@ -105,6 +111,5 @@ public class Streamer implements Comparable {
         }
         return true;
     }
-    
 
 }

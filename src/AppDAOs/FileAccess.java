@@ -79,7 +79,6 @@ public class FileAccess {
                 }
             }
             DownloadStreamer streamer = new DownloadStreamer(streamerString);
-            System.out.println("test");
             return streamer.getStreamer();
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();

@@ -25,13 +25,11 @@ public class StreamerModel extends DefaultComboBoxModel {
     public StreamerModel(Following follow) {
         this.follow = follow;
         this.sortStreamer(follow.getStreamer());
-        this.sortStreamer(streamer);
     }
 
     public StreamerModel() {
         FileAccess access = new FileAccess("TwitchHLS.config");
         this.sortStreamer(access.readStreamer());
-        this.sortStreamer(streamer);
     }
 
     @Override
@@ -69,14 +67,24 @@ public class StreamerModel extends DefaultComboBoxModel {
 
     private void sortStreamer(ArrayList<Streamer> str) {
         ArrayList<Streamer> live = new ArrayList<>();
-        for (int i = 0; i < str.size(); i++) {
-            if (str.get(i).isStreamLive() == true) {
-                live.add(str.get(i));
-                str.remove(str.get(i));
+        for (int k = 0; k < 2; k++) {
+            for (int i = 0; i < str.size(); i++) {
+                if (str.get(i).isStreamLive() == true) {
+                    if (live.contains(str.get(i)) == false) {
+                        live.add(str.get(i));
+                    }
+                    str.remove(str.get(i));
+                }
+
             }
         }
         Collections.sort(live);
         Collections.sort(str);
+        for (Streamer s : str) {
+            if (live.contains(s)) {
+                str.remove(s);
+            }
+        }
         ArrayList<Streamer> fin = new ArrayList<Streamer>();
         if (live.isEmpty() == false) {
             fin.addAll(live);

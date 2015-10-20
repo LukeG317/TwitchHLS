@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Objects;
 
 /**
  *
@@ -89,5 +90,21 @@ public class Streamer implements Comparable {
         }
         return -1;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Streamer other = (Streamer) obj;
+        if (!this.channel.equals(other.channel)) {
+            return false;
+        }
+        return true;
+    }
+    
 
 }

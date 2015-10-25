@@ -5,28 +5,14 @@
  */
 package AppGUI;
 
-import AppActions.closeAction;
-import AppActions.refreshAction;
-import AppActions.startAction;
+import AppActions.*;
 import AppServices.Following;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Action;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.Border;
+
 
 /**
  *
@@ -57,10 +43,10 @@ public class ChoosePanel extends JPanel {
     public ChoosePanel(Following follow) {
         this.follow = follow;
         this.setLayout(new BorderLayout());
-        Border padding = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+        Border padding = BorderFactory.createEmptyBorder(10, 5, 10, 10);
         this.setBorder(padding);
 
-        ImageIcon image = new ImageIcon(getClass().getResource("/Resources/TwitchKlein.png"));
+        ImageIcon image = new ImageIcon(getClass().getResource("/Resources/TwitchHLS_small.png"));
         JLabel label = new JLabel("", image, JLabel.CENTER);
         this.add(label, BorderLayout.WEST);
 
@@ -175,6 +161,7 @@ public class ChoosePanel extends JPanel {
                     qualityBox.setEnabled(true);
                 }
             }
+
 
         });
         return help;

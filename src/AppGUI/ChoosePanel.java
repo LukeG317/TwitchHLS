@@ -7,7 +7,6 @@ package AppGUI;
 
 import AppActions.*;
 import AppServices.Following;
-import AppServices.StreamerListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -86,7 +85,6 @@ public class ChoosePanel extends JPanel {
         ImageIcon greenButton = new ImageIcon(getClass().getResource("/Resources/green-button.png"));
         ImageIcon redButton = new ImageIcon(getClass().getResource("/Resources/red-button.png"));
         inputBox.setRenderer(new StreamerRenderer(greenButton, redButton));
-        inputBox.getEditor().getEditorComponent().addKeyListener(new StreamerListener(this, inputBox));
         help.add(inputBox);
 
         gbConstr = this.makegbc(1, 0, 2, 1);

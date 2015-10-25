@@ -106,10 +106,7 @@ public class Streamer implements Comparable {
             return false;
         }
         final Streamer other = (Streamer) obj;
-        if (!this.channel.equals(other.channel)) {
-            return false;
-        }
-        return true;
+        return this.channel.equals(other.channel);
     }
 
 }

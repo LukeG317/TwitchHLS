@@ -72,7 +72,7 @@ public class FileAccess {
             FileReader fileReader = new FileReader(file.getAbsoluteFile());
             BufferedReader bufReader = new BufferedReader(fileReader);
             while ((streamTyp = bufReader.readLine()) != null) {
-                if (streamTyp.equals("") || streamTyp.contains(" ")) {
+                if (streamTyp.isEmpty() || streamTyp.contains(" ")) {
 
                 } else {
                     streamerString.add(streamTyp);
@@ -95,7 +95,7 @@ public class FileAccess {
             fileReader = new FileReader(file.getAbsoluteFile());
             BufferedReader bufReader = new BufferedReader(fileReader);
             while ((streamTyp = bufReader.readLine()) != null) {
-                if (streamTyp.equals("") || streamTyp.contains(" ")) {
+                if (streamTyp.isEmpty() || streamTyp.contains(" ")) {
 
                 } else {
                     return streamTyp;

@@ -5,12 +5,27 @@
  */
 package AppGUI;
 
-import AppActions.*;
+import AppActions.closeAction;
+import AppActions.refreshAction;
+import AppActions.startAction;
 import AppServices.Following;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
+import javax.swing.Action;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**
@@ -37,7 +52,7 @@ public class ChoosePanel extends JPanel {
     private final JLabel autoQualityLabel = new JLabel(" AQ:");
     private final JCheckBox autoQualityBox = new JCheckBox();
 
-    private Following follow;
+    private final Following follow;
 
     public ChoosePanel(Following follow) {
         this.follow = follow;

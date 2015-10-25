@@ -17,7 +17,7 @@ import javax.swing.AbstractAction;
  */
 public class refreshAction extends AbstractAction {
 
-    private ChoosePanel pan;
+    private final ChoosePanel pan;
     
     public refreshAction(ChoosePanel pan) {
         this.pan = pan;

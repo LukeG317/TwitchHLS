@@ -7,13 +7,14 @@ package AppActions;
 
 import AppGUI.ChoosePanel;
 import AppServices.HTMLCreator;
-import java.awt.event.ActionEvent;
-import javax.swing.*;
 import AppServices.SelectionPOJO;
 import AppServices.Stream;
 import java.awt.Desktop;
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.net.URI;
+import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,7 +22,7 @@ import java.net.URI;
  */
 public class startAction extends AbstractAction {
 
-    private ChoosePanel source;
+    private final ChoosePanel source;
 
     public startAction(ChoosePanel source) {
         this.source = source;
@@ -31,8 +32,8 @@ public class startAction extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         URI streamURI = null;
-        String selectedChannel = (String) source.getInputBox().getSelectedItem().toString();
-        String selectedQuality = (String) source.getQualityBox().getSelectedItem().toString();
+        String selectedChannel = source.getInputBox().getSelectedItem().toString();
+        String selectedQuality = source.getQualityBox().getSelectedItem().toString();
         SelectionPOJO selected = new SelectionPOJO(selectedChannel, selectedQuality);
         boolean chat = source.getChatBox().isSelected();
         boolean autoQuality = source.getAutoQualityBox().isSelected();
@@ -40,7 +41,7 @@ public class startAction extends AbstractAction {
         String streamURL = stream.getStreamURL();
         
         
-        if (selectedChannel.equals("") == false && selectedChannel.contains(" ") == false && selectedChannel.equals("null") == false) {
+        if (selectedChannel.isEmpty() == false && selectedChannel.contains(" ") == false && selectedChannel.equals("null") == false) {
             if (Desktop.isDesktopSupported()) {
                 try {
                     if (chat == true && selected.isStreamLive()) {

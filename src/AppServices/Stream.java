@@ -5,9 +5,13 @@
  */
 package AppServices;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -15,9 +19,10 @@ import java.util.*;
  */
 public class Stream {
 
-    private SelectionPOJO streamDetails;
-    private String TOKEN_STRING, USHER_STRING, USHER_URL;
-    private ArrayList<String> tokenAndSignature;
+    private final SelectionPOJO streamDetails;
+    private final String TOKEN_STRING;
+    private String USHER_URL,USHER_STRING;
+    private final ArrayList<String> tokenAndSignature;
 
     public Stream(SelectionPOJO streamInfos) {
         this.streamDetails = streamInfos;

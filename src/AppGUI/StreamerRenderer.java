@@ -38,7 +38,7 @@ public class StreamerRenderer extends DefaultListCellRenderer {
         }
         
         label.setText(this.capitalize(str.getChannel()));
-        if(str.getGame().equals("")){
+        if(str.getGame().isEmpty()){
         }
         else{
             label.setToolTipText(str.getGame());

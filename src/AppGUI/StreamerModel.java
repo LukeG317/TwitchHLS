@@ -8,8 +8,9 @@ package AppGUI;
 import AppDAOs.FileAccess;
 import AppServices.Following;
 import AppServices.Streamer;
-import java.util.*;
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *

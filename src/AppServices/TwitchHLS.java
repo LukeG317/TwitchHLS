@@ -22,7 +22,7 @@ public class TwitchHLS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        if(System.getProperty("system.os").startsWith("Windows")){
+        if(System.getProperty("os.name").startsWith("Windows")){
             try {
                 UIManager.setLookAndFeel("com.alee.laf.WebLookAndFee");
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {

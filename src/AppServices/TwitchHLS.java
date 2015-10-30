@@ -24,7 +24,7 @@ public class TwitchHLS {
     public static void main(String[] args) {
         if(System.getProperty("os.name").startsWith("Windows")){
             try {
-                UIManager.setLookAndFeel("com.alee.laf.WebLookAndFee");
+                UIManager.setLookAndFeel("com.alee.laf.WebLookAndFeel");
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                 Logger.getLogger(TwitchHLS.class.getName()).log(Level.SEVERE, null, ex);
             }
